@@ -229,7 +229,7 @@
 				}
 			},
 			mounted: function() {
-				console.log(this.campaignInfo);
+//				console.log(this.campaignInfo);
 			}
 		})
 		
@@ -278,7 +278,7 @@
 			methods: {
 				clickEvent: function(idx, name, group) {
 					this.activeIndex = idx;
-					console.log(this.activeIndex);
+//					console.log(this.activeIndex);
 //					console.log('click event fired');
 					this.$emit('cate-click', idx, name, group);
 				}
@@ -294,39 +294,34 @@
 			props: [ 'cateList' ],
 			data() {
 				return {
-					selectedCate1: 'all',
-					// selectedCate2: ['all']
+					selectedCate1: '1',
 					selectedCate2: ['1']
 				}
 			},
 			methods: {
 				setCate: function(selectedIdx, selectedName, selectedGroupIdx) {
-					this.selectedCate1 = selectedName;
 					var cate2DuplChk = false;
 					var selected = this.$children[selectedIdx-1];
+					var selectedIdxString = String(selectedIdx);
 					if(selectedGroupIdx == 2) {
 //						다중 선택 카테고리
-						if(selectedName == 'all') {
+						if(selectedIdx == 1) {
+							console.log("올 선택시");
 							this.$children.forEach( el => {
 								el.$el.classList.remove('is-active');
 							});
 							this.$el.children[0].classList.add('is-active');
-							// this.selectedCate2 = ['all'];
 							this.selectedCate2 = ['1'];
 						} else {
 							this.selectedCate2.forEach( val => {
-								console.log("val: "+val);
-								// if(val.match('all')) {
 								if(val == '1') {
 									this.selectedCate2.pop(val);
 									this.$el.children[0].classList.remove('is-active');
 								} else {
-									// if(val == selectedName) {
-									if(val == selectedIdx) {
+									if(val == selectedIdxString) {
 //								동일 카테고리 선택!
 										cate2DuplChk = true;
-										// this.selectedCate2.splice(this.selectedCate2.indexOf(selectedName),1);
-										this.selectedCate2.splice(this.selectedCate2.indexOf(selectedIdx),1);
+										this.selectedCate2.splice(this.selectedCate2.indexOf(selectedIdxString),1);
 									}
 								}
 							});
@@ -335,20 +330,20 @@
 								selected.$el.classList.remove('is-active')
 								cate2DuplChk = false;
 							} else {
-								// this.selectedCate2.push(selectedName);
-								this.selectedCate2.push(selectedIdx);
+								this.selectedCate2.push(selectedIdxString);
 								selected.$el.classList.add('is-active')
 							}
 
 							
 							if(this.selectedCate2.length<1) {
 //								선택된 카테고리 없음 / all로 초기화
-								// this.selectedCate2 = ['all'];
 								this.selectedCate2 = ['1'];
+								this.$el.children[0].classList.add('is-active');
 							}
 						}
 						console.log(this.selectedCate2);
 					} else {
+						this.selectedCate1 = selectedIdxString;
 //						단일 선택 카테고리
 						this.$children.forEach( el => {
 							el.$el.classList.remove('is-active');
@@ -401,10 +396,10 @@
 						{ idx: 10, groupIdx: 2, name: 'test', displayName: '체험권' }
 					],
 					campaignList: [
-						{ idx: 1, type: 'dog', dateStart: '2018/06/25', dateEnd: '2018/06/30', request: 17, recruit: 30, imgSrc: './images/campaign_sample_01.jpg', title: '위 러브캣 LEMON BALL 놀이장난감', desc: '상품과 고양이를 함께 인증해주세요' },
-						{ idx: 2, type: 'cat', dateStart: '2018/06/21', dateEnd: '2018/06/28', request: 17, recruit: 30, imgSrc: './images/campaign_sample_01.jpg', title: '위 러브캣 LEMON BALL 놀이장난감', desc: '상품과 고양이를 함께 인증해주세요' },
-						{ idx: 3, type: 'cat', dateStart: '2018/06/23', dateEnd: '2018/06/25', request: 17, recruit: 30, imgSrc: './images/campaign_sample_01.jpg', title: '위 러브캣 LEMON BALL 놀이장난감', desc: '상품과 고양이를 함께 인증해주세요' },
-						{ idx: 4, type: 'cat', dateStart: '2018/06/19', dateEnd: '2018/06/26', request: 17, recruit: 30, imgSrc: './images/campaign_sample_01.jpg', title: '위 러브캣 LEMON BALL 놀이장난감', desc: '상품과 고양이를 함께 인증해주세요' }
+						{ idx: 1, type: 'dog', dateStart: '2018/06/25', dateEnd: '2018/06/30', announceDate: '2018/07-03', request: 17, recruit: 30, imgSrc: './images/campaign_sample_01.jpg', title: '위 러브캣 LEMON BALL 놀이장난감', desc: '상품과 고양이를 함께 인증해주세요' },
+						{ idx: 2, type: 'cat', dateStart: '2018/06/21', dateEnd: '2018/06/28', announceDate: '2018/07-01', request: 17, recruit: 30, imgSrc: './images/campaign_sample_01.jpg', title: '위 러브캣 LEMON BALL 놀이장난감', desc: '상품과 고양이를 함께 인증해주세요' },
+						{ idx: 3, type: 'cat', dateStart: '2018/06/23', dateEnd: '2018/06/25', announceDate: '2018/07-02', request: 17, recruit: 30, imgSrc: './images/campaign_sample_01.jpg', title: '위 러브캣 LEMON BALL 놀이장난감', desc: '상품과 고양이를 함께 인증해주세요' },
+						{ idx: 4, type: 'cat', dateStart: '2018/06/19', dateEnd: '2018/06/26', announceDate: '2018/06-27', request: 17, recruit: 30, imgSrc: './images/campaign_sample_01.jpg', title: '위 러브캣 LEMON BALL 놀이장난감', desc: '상품과 고양이를 함께 인증해주세요' }
 					]
 				}
 				

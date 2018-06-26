@@ -189,15 +189,19 @@ section.campaign .cate-wrap .cate a span {
 }
 section.campaign .cate-wrap .cate a span:after {
 	content: "";
+	position: absolute;
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: top;
 	margin-left: 8px;
+}
+section.campaign .cate-wrap .cate a span.dog,
+section.campaign .cate-wrap .cate a span.cat {
+	margin-left: -34px;
 }
 section.campaign .cate-wrap .cate a span.dog:after {
 	width: 36px;
 	height: 26px;
 	background: url(../images/dog@2x.png) center / 36px 26px no-repeat;
-	vertical-align: middle;
 }
 section.campaign .cate-wrap .cate a span.cat:after {
 	width: 25px;
