@@ -128,26 +128,37 @@ section.index .page-point {
 	background: url(../images/index_page_point.png) center / 251px 68px no-repeat;
 }
 section.campaign {
-	padding: 178px 0 69px;
+	padding: 180px 0 154px;
 	background: #ff8840;
 	z-index: 1;
 }
-section.campaign .title-area {
-	text-align: center;
-	margin-bottom: 60px;
+section.campaign .page-point {
+	position: absolute;
+	bottom: -35px;
+	left: 50%;
+	margin-left: -125px;
+	width: 251px;
+	height: 69px;
+	background: url(../images/campaign_page_point.png) center / 251px 69px no-repeat;
 }
-section.campaign .title-area h2 {
+section > .title-area {
+	text-align: center;
+}
+section > .title-area h2 {
 	margin-bottom: 20px;
 }
-section.campaign .title-area h2 img {
-	width: 366px;
+section.campaign > .title-area {
+	margin-bottom: 68px;
 }
-section.campaign .title-area p {
+section.campaign > .title-area h2 img {
+	width: 418px;
+}
+section > .title-area p {
 	font-size: 18px;
 	font-weight: 300;
 	line-height: 24px;
 }
-section.campaign .title-area p:last-child {
+section > .title-area p:last-child {
 	font-weight: 400;
 }
 section.campaign .campaign-list {
@@ -243,7 +254,8 @@ section.campaign .list-container.campaign .campaignEl {
 	display: inline-block;
 	width: 297px;
 	height: 407px;
-	margin-right: 29px;
+	margin: 0 29px 27px 0;
+	box-shadow: 0 0 20px 0 rgba(183, 94, 40, 0.8);
 }
 section.campaign .list-container.campaign .campaignEl:nth-of-type(4n) {
 	margin-right: 0;
@@ -258,6 +270,15 @@ section.campaign .list-container.campaign .campaignEl .frame .front-info {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .wrap-top .end-msg {
+	display: block;
+	margin-top: 22px;
+	font-size: 25px;
+	text-align: center;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .wrap-top .end-msg b {
+	font-weight: 700;
 }
 section.campaign .list-container.campaign .campaignEl .frame .front-info .dday {
 	position: absolute;
@@ -292,6 +313,128 @@ section.campaign .list-container.campaign .campaignEl .frame .front-info .badge 
 }
 section.campaign .list-container.campaign .campaignEl .frame .front-info .badge span:last-child {
 	margin-right: 0;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0 19px 25px;
+	text-align: center;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status .end-msg {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: 700;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status .count-wrap {
+	overflow: hidden;
+	margin-bottom: 11px;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status span {
+	display: block;
+	font-size: 20px;
+	letter-spacing: 0.5px;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status span b {
+	font-weight: 700;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status .req {
+	float: left;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status .rec {
+	float: right;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status .gage {
+	width: 100%;
+	height: 16px;
+	background: #e0ccc6;
+	border-radius: 8px;
+	overflow: hidden;
+}
+section.campaign .list-container.campaign .campaignEl .frame .front-info .status .gage .inner {
+	width: 0;
+	height: 100%;
+	border-radius: 8px;
+	background: #ff8840;
+}
+section.campaign .list-container.campaign .campaignEl .frame .hover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(34, 24, 21, 0.6);
+}
+section.campaign .list-container.campaign .campaignEl .frame .hover .wrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	text-align: center;
+	transform: translate(-50%, -50%);
+}
+section.campaign .list-container.campaign .campaignEl .frame .hover .title {
+	margin-bottom: 20px;
+	line-height: 24px;
+	font-size: 20px;
+	font-weight: 700;
+	color: #ffffff;
+}
+section.campaign .list-container.campaign .campaignEl .frame .hover .desc {
+	margin-bottom: 38px;
+	line-height: 29px;
+	font-size: 20px;
+	font-weight: 300;
+	color: #ffffff;
+	text-decoration: underline;
+}
+section.campaign .list-container.campaign .campaignEl .frame .hover .button {
+	display: inline-block;
+	width: 130px;
+	background: #ffffff;
+}
+section.campaign .list-container.campaign .campaignEl .frame .hover .button span {
+	display: inline-block;
+	padding: 11px 0;
+	font-size: 20px;
+	font-weight: 700;
+	color: #ff8840;
+}
+section.campaign .list-more {
+	display: block;
+	width: 230px;
+	margin: 38px auto 0;
+}
+section.campaign .list-more span {
+	display: inline-block;
+	padding: 13px 0;
+	color: #ff8840;
+	font-size: 22px;
+	letter-spacing: 1.5px;
+}
+
+.campaign-over-transition-enter-active {
+	transition: all 0.15s ease;
+}
+.campaign-over-transition-leave-active {
+	transition: all 0.3s ease;
+}
+.campaign-over-transition-enter, .campaign-over-transition-leave-to {
+	opacity: 0;
+}
+
+section.discount {
+	padding: 163px 0 119px;
+}
+section.discount > .title-area {
+	margin-bottom: 45px;
+}
+section.discount > .title-area h2 {
+	margin-bottom: 34px;
+}
+section.discount > .title-area h2 img {
+	width: 413px;
 }
 
 .content.main .section-nav {
