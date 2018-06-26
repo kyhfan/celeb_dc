@@ -1,5 +1,5 @@
 <?
-	include_once "../../config.php";
+	include_once "../../include/autoload.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

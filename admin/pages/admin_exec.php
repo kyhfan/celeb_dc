@@ -1,5 +1,5 @@
 <?php
-	include_once "../../config.php";
+	include_once "../../include/autoload.php";
 
 	switch ($_REQUEST['exec'])
 	{
@@ -102,7 +102,11 @@
 		break;
 
 		case "show_select_cate1" :
-			$cate1_query		= "SELECT * FROM ".$_gl['category_info_table']." WHERE cate_2=0 AND cate_3=0";
+            $mnv_f          = new mnv_function();
+            $my_db          = $mnv_f->Connect_MySQL();
+            $gubun          = $mnv_f->MobileCheck();
+
+            $cate1_query		= "SELECT * FROM category_info WHERE cate_level=1";
 			$cate1_result		= mysqli_query($my_db, $cate1_query);
 			$innerHTML	= "<option value=''>선택하세요</option>";
 			while ($cate1_data	= mysqli_fetch_array($cate1_result))
@@ -327,31 +331,35 @@
 		break;
 
 		case "insert_goods_info" :
-			$showYN						= $_REQUEST['showYN'];
-			$salesYN						= $_REQUEST['salesYN'];
-			$cate_1						= $_REQUEST['cate_1'];
-			$cate_2						= $_REQUEST['cate_2'];
-			$cate_3						= $_REQUEST['cate_3'];
-			$related_goods				= $_REQUEST['related_goods'];
-			$sales_store					= $_REQUEST['sales_store'];
+            $mnv_f          = new mnv_function();
+            $my_db          = $mnv_f->Connect_MySQL();
+            $gubun          = $mnv_f->MobileCheck();
+
+            $showYN					= $_REQUEST['showYN'];
+			$salesYN				= $_REQUEST['salesYN'];
+			$cate_1					= $_REQUEST['cate_1'];
+			$cate_2					= $_REQUEST['cate_2'];
+			$cate_3					= $_REQUEST['cate_3'];
+			// $related_goods			= $_REQUEST['related_goods'];
+			$sales_store			= $_REQUEST['sales_store'];
 			$goods_name				= $_REQUEST['goods_name'];
-			$goods_eng_name			= $_REQUEST['goods_eng_name'];
-			$goods_model				= $_REQUEST['goods_model'];
-			$goods_brand				= $_REQUEST['goods_brand'];
-			$goods_status				= $_REQUEST['goods_status'];
-			$goods_small_desc			= $_REQUEST['goods_small_desc'];
+			// $goods_eng_name			= $_REQUEST['goods_eng_name'];
+			$goods_model			= $_REQUEST['goods_model'];
+			$goods_brand			= $_REQUEST['goods_brand'];
+			$goods_status			= $_REQUEST['goods_status'];
+			$goods_small_desc		= $_REQUEST['goods_small_desc'];
 			$goods_middle_desc		= $_REQUEST['goods_middle_desc'];
 			$goods_big_desc			= $_REQUEST['goods_big_desc'];
-			$m_goods_big_descYN	= $_REQUEST['m_goods_big_descYN'];
+			$m_goods_big_descYN	    = $_REQUEST['m_goods_big_descYN'];
 			$m_goods_big_desc		= $_REQUEST['m_goods_big_desc'];
-			$supply_price				= $_REQUEST['supply_price'];
-			$sales_price					= $_REQUEST['sales_price'];
-			$saved_priceYN				= $_REQUEST['saved_priceYN'];
-			$saved_price					= $_REQUEST['saved_price'];
-			$discount_price				= $_REQUEST['discount_price'];
+			$supply_price			= $_REQUEST['supply_price'];
+			$sales_price			= $_REQUEST['sales_price'];
+			$saved_priceYN			= $_REQUEST['saved_priceYN'];
+			$saved_price			= $_REQUEST['saved_price'];
+			$discount_price			= $_REQUEST['discount_price'];
 			$goods_optionYN			= $_REQUEST['goods_optionYN'];
-			$goods_option_txt			= $_REQUEST['goods_option_txt'];
-			$goods_stock				= $_REQUEST['goods_stock'];
+			$goods_option_txt		= $_REQUEST['goods_option_txt'];
+			$goods_stock			= $_REQUEST['goods_stock'];
 			$goods_code				= create_goodscode();
 
 			$goods_query		= "INSERT INTO ".$_gl['goods_info_table']."(showYN,salesYN,cate_1,cate_2,cate_3,related_goods,sales_store,goods_name,goods_eng_name,goods_code,goods_model,goods_brand,goods_status,goods_small_desc,goods_middle_desc,goods_big_desc,m_goods_big_descYN,m_goods_big_desc,supply_price,sales_price,discount_price,saved_priceYN,saved_price,goods_optionYN,goods_option_txt,goods_stock,goods_regdate) values('".$showYN."','".$salesYN."','".$cate_1."','".$cate_2."','".$cate_3."','".$related_goods."','".$sales_store."','".$goods_name."','".$goods_eng_name."','".$goods_code."','".$goods_model."','".$goods_brand."','".$goods_status."','".$goods_small_desc."','".$goods_middle_desc."','".$goods_big_desc."','".$m_goods_big_descYN."','".$m_goods_big_desc."','".$supply_price."','".$sales_price."','".$discount_price."','".$saved_priceYN."','".$saved_price."','".$goods_optionYN."','".$goods_option_txt."','".$goods_stock."','".date("Y-m-d H:i:s")."')";
@@ -1189,38 +1197,22 @@
 
 
 		case "update_option_info" :
-			$best_goods_flag			= $_REQUEST['best_goods_flag'];
-			$new_goods_flag				= $_REQUEST['new_goods_flag'];
-			$plan_goods_flag			= $_REQUEST['plan_goods_flag'];
-			$cate_goods_flag			= $_REQUEST['cate_goods_flag'];
-			$best_goods_flagYN			= $_REQUEST['best_goods_flagYN'];
-			$new_goods_flagYN			= $_REQUEST['new_goods_flagYN'];
-			$plan_goods_flagYN			= $_REQUEST['plan_goods_flagYN'];
-			$cate_goods_flagYN			= $_REQUEST['cate_goods_flagYN'];
-			$default_saved_priceYN		= $_REQUEST['default_saved_priceYN'];
-			$default_saved_price		= $_REQUEST['default_saved_price'];
-			$default_delivery_price 	= $_REQUEST['default_delivery_price'];
-			$default_delivery_priceYN 	= $_REQUEST['default_delivery_priceYN'];
+            $mnv_f          = new mnv_function();
+            $my_db          = $mnv_f->Connect_MySQL();
+            $gubun          = $mnv_f->MobileCheck();
 
-			$option1_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$best_goods_flag."', option_load='".$best_goods_flagYN."' WHERE option_name='best_goods_flag'"; 
-			$option1_result		= mysqli_query($my_db, $option1_query);
+            $default_delivery_price 		= $_REQUEST['default_delivery_price'];
+			$default_delivery_priceYN 		= $_REQUEST['default_delivery_priceYN'];
+			$default_free_delivery_price 	= $_REQUEST['default_free_delivery_price'];
+			$default_free_delivery_priceYN 	= $_REQUEST['default_free_delivery_priceYN'];
 
-			$option2_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$new_goods_flag."', option_load='".$new_goods_flagYN."' WHERE option_name='new_goods_flag'"; 
-			$option2_result		= mysqli_query($my_db, $option2_query);
+			$site_option1_query		= "UPDATE site_option SET option_value='".$default_delivery_price."', option_use='".$default_delivery_priceYN."' WHERE option_name='default_delivery_price'"; 
+			$site_option1_result	= mysqli_query($my_db, $site_option1_query);
 
-			$option3_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$plan_goods_flag."', option_load='".$plan_goods_flagYN."' WHERE option_name='plan_goods_flag'"; 
-			$option3_result		= mysqli_query($my_db, $option3_query);
-
-			$option4_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$cate_goods_flag."', option_load='".$cate_goods_flagYN."' WHERE option_name='cate_goods_flag'"; 
-			$option4_result		= mysqli_query($my_db, $option4_query);
-
-			$option5_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$default_saved_price."', option_load='".$default_saved_priceYN."' WHERE option_name='default_saved_price'"; 
-			$option5_result		= mysqli_query($my_db, $option5_query);
-
-			$option6_query		= "UPDATE ".$_gl['site_option_table']." SET option_value='".$default_delivery_price."', option_load='".$default_delivery_priceYN."' WHERE option_name='default_delivery_price'"; 
-			$option6_result		= mysqli_query($my_db, $option6_query);
-
-			if ($option6_result)
+			$site_option2_query		= "UPDATE site_option SET option_value='".$default_free_delivery_price."', option_use='".$default_free_delivery_priceYN."' WHERE option_name='default_free_delivery_price'"; 
+			$site_option2_result	= mysqli_query($my_db, $site_option2_query);
+print_r($site_option1_query);
+			if ($site_option2_result)
 				$flag	= "Y";
 			else
 				$flag	= "N";

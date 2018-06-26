@@ -1,5 +1,9 @@
 <?
-	include_once "header.php";
+    include_once "header.php";
+  
+    // 쇼핑몰 기본 설정 SELECT
+    $mnv_f          = new mnv_function();
+    $my_db          = $mnv_f->Connect_MySQL();  
 ?>
 <link href="../../lib/filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
 <link href="../../lib/filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
@@ -65,7 +69,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>* 상품분류 선택</td>
+                  <td>* 상품카테고리 선택</td>
                   <td>
                     <select class="form-control" id="cate_1">
                       <option value="">선택하세요</option>
@@ -78,21 +82,21 @@
                     </select> -->
                   </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td>연관 상품</td>
                   <td colspan="2">
                     <input class="form-control" id="related_goods" style="width:50%">
                     * 상품코드를 입력해 주시고, 2개 이상일시 ;로 구분해 주세요.(PR00001;PR00002)
                   </td>
-                </tr>
-                <tr>
+                </tr> -->
+                <!-- <tr>
                   <td>판매 경로</td>
                   <td colspan="2">
                     <select class="form-control" id="sales_store">
                       <option value="">선택하세요</option>
                     </select>
                   </td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
             <table class="table table-striped table-bordered">
@@ -108,12 +112,12 @@
                     <input class="form-control" id="goods_name" style="width:100%">
                   </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td>영문 상품명</td>
                   <td colspan="2">
                     <input class="form-control" id="goods_eng_name" style="width:100%">
                   </td>
-                </tr>
+                </tr> -->
                 <tr>
                   <td>모델명</td>
                   <td colspan="2">

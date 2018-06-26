@@ -971,31 +971,31 @@ function show_goods_list(id)
 
 // 상품 정보 insert
 $(document).on("click", "#submit_btn2", function(){
-	var showYN						= $(':radio[name="showYN"]:checked').val();
-	var salesYN						= $(':radio[name="salesYN"]:checked').val();
-	var cate_1						= $("#cate_1").val();
-	var cate_2						= $("#cate_2").val();
-	var cate_3						= $("#cate_3").val();
-	var related_goods				= $("#related_goods").val();
-	var sales_store					= $("#sales_store").val();
+	var showYN					= $(':radio[name="showYN"]:checked').val();
+	var salesYN					= $(':radio[name="salesYN"]:checked').val();
+	var cate_1					= $("#cate_1").val();
+	var cate_2					= $("#cate_2").val();
+	var cate_3					= $("#cate_3").val();
+	var related_goods			= $("#related_goods").val();
+	var sales_store				= $("#sales_store").val();
 	var goods_name				= $("#goods_name").val();
 	var goods_eng_name			= $("#goods_eng_name").val();
 	var goods_model				= $("#goods_model").val();
 	var goods_brand				= $("#goods_brand").val();
-	var goods_status				= $(':radio[name="goods_status"]:checked').val();
-	var goods_small_desc			= $("#goods_small_desc").val();
+	var goods_status			= $(':radio[name="goods_status"]:checked').val();
+	var goods_small_desc		= $("#goods_small_desc").val();
 	var goods_middle_desc		= $("#goods_middle_desc").val();
 	var goods_big_desc			= oEditors.getById["goods_big_desc"].getIR();
 	var m_goods_big_descYN		= $(':radio[name="m_goods_big_descYN"]:checked').val();
-	var supply_price				= $("#supply_price").val();
-	var sales_price					= $("#sales_price").val();
-	var discount_price				= $("#discount_price").val();
-	var saved_priceYN				= $(':radio[name="saved_priceYN"]:checked').val();
+	var supply_price			= $("#supply_price").val();
+	var sales_price				= $("#sales_price").val();
+	var discount_price			= $("#discount_price").val();
+	var saved_priceYN			= $(':radio[name="saved_priceYN"]:checked').val();
 	var goods_optionYN			= $(':radio[name="goods_optionYN"]:checked').val();
-	var goods_option_txt			= "";
+	var goods_option_txt		= "";
 	var goods_stock				= $("#goods_stock").val();
 	var m_goods_big_desc		= "";
-	var saved_price					= "";
+	var saved_price				= "";
 
 	if (cate_1 == "")
 	{
@@ -2121,39 +2121,24 @@ $(document).on("click", "#list_banner_btn", function(){
 $(document).on("click", "#submit_btn8", function(){
 	if (confirm("쇼핑몰 기본설정을 수정하시겠습니까?"))
 	{
-		var best_goods_flag				= $(':radio[name="best_goods_flag"]:checked').val();
-		var new_goods_flag				= $(':radio[name="new_goods_flag"]:checked').val();
-		var plan_goods_flag				= $(':radio[name="plan_goods_flag"]:checked').val();
-		var cate_goods_flag				= $(':radio[name="cate_goods_flag"]:checked').val();
-		var best_goods_flagYN			= $("#best_goods_flagYN").val();
-		var new_goods_flagYN			= $("#new_goods_flagYN").val();
-		var plan_goods_flagYN			= $("#plan_goods_flagYN").val();
-		var cate_goods_flagYN			= $("#cate_goods_flagYN").val();
-		var default_saved_priceYN		= $("#default_saved_priceYN").val();
-		var default_saved_price			= $("#default_saved_price").val();
-		var default_delivery_priceYN	= $("#default_delivery_priceYN").val();
-		var default_delivery_price		= $("#default_delivery_price").val();
+		var default_delivery_priceYN		= $("#default_delivery_priceYN").val();
+		var default_delivery_price			= $("#default_delivery_price").val();
+		var default_free_delivery_priceYN	= $("#default_free_delivery_priceYN").val();
+		var default_free_delivery_price		= $("#default_free_delivery_price").val();
 
 		$.ajax({
 			type   : "POST",
 			async  : false,
 			url    : "admin_exec.php",
 			data:{
-				"exec"							: "update_option_info",
-				"best_goods_flag"				: best_goods_flag,
-				"new_goods_flag"				: new_goods_flag,
-				"plan_goods_flag"				: plan_goods_flag,
-				"cate_goods_flag"				: cate_goods_flag,
-				"best_goods_flagYN"				: best_goods_flagYN,
-				"new_goods_flagYN"				: new_goods_flagYN,
-				"plan_goods_flagYN"				: plan_goods_flagYN,
-				"cate_goods_flagYN"				: cate_goods_flagYN,
-				"default_saved_priceYN"			: default_saved_priceYN,
-				"default_saved_price"			: default_saved_price,
-				"default_delivery_priceYN"		: default_delivery_priceYN,
-				"default_delivery_price"		: default_delivery_price
+				"exec"								: "update_option_info",
+				"default_delivery_priceYN"			: default_delivery_priceYN,
+				"default_delivery_price"			: default_delivery_price,
+				"default_free_delivery_priceYN"		: default_free_delivery_priceYN,
+				"default_free_delivery_price"		: default_free_delivery_price
 			},
 			success: function(response){
+                // console.log(response);
 				if (response == "Y")
 				{
 					alert("사이트 기본 설정이 수정되었습니다.");
